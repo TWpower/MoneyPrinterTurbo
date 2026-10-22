@@ -31,8 +31,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             echo "python3-blinker removal skipped; continuing") \
         && rm -rf /var/lib/apt/lists/*
 
-# Copy only the requirements.txt first to leverage Docker cache
-COPY requirements.txt ./
+# Copy dependency inputs together so security floors apply in cached builds
+COPY requirements.txt security-constraints.txt ./
 
 # Install Python dependencies
 RUN python3 -m pip install --no-cache-dir \

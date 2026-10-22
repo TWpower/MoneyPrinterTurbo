@@ -1,9 +1,12 @@
+-c security-constraints.txt
 # Keep legacy pip install support; primary deps moved to pyproject.toml / uv.lock.
-moviepy==2.2.1
-streamlit==1.59.1
+moviepy @ https://github.com/Zulko/moviepy/archive/97316f37f6a8d3843abfb53eba8f3bb0ea46a008.tar.gz
+pillow==13.0.0
+toml==0.10.2
+streamlit==1.66.1
 streamlit-tour==1.1.0
 edge_tts==7.2.7
-fastapi==0.136.3
+fastapi==0.159.1
 uvicorn==0.32.1
 openai==2.24.0
 faster-whisper==1.1.0
@@ -12,11 +15,11 @@ google-genai==2.11.0
 dashscope==1.20.14
 azure-cognitiveservices-speech==1.41.1
 redis==5.2.0
-python-multipart==0.0.27
+python-multipart==0.0.31
 pyyaml==6.0.3
-requests==2.33.1
+requests==2.34.2
 packaging==24.2
 socksio==1.0.0
 pydub==0.25.1
 audioop-lts==0.2.2; python_version >= "3.13"
-litellm==1.86.2
+litellm==1.106.2

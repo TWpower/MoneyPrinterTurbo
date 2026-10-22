@@ -79,8 +79,8 @@ RUN set -u; \
     fi; \
     rm -rf /var/lib/apt/lists/*
 
-# Copy only the requirements.txt first to leverage Docker cache
-COPY requirements.txt ./
+# Copy dependency inputs together so security floors apply in cached builds
+COPY requirements.txt security-constraints.txt ./
 
 # 本地默认优先国内 PyPI 镜像；GHCR 发布使用官方 PyPI，避免海外 runner 因跨境镜像访问变慢。
 RUN if [ "$PIP_USE_OFFICIAL" = "1" ]; then \

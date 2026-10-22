@@ -578,7 +578,10 @@ def test_dash_external_segments_cannot_escape_source_snapshot(native):
         "blue"
     )  # External segments change while the hashed snapshot remains unchanged.
     assert source_snapshot.read_bytes() == unchanged_manifest
-    with pytest.raises(ProjectError, match="not on whitelist"):
+    # Builds without DASH demuxing reject the manifest before protocol checks.
+    # Either rejection must leave the project failed and produce no export.
+    with pytest.raises(ProjectError, match="not on whitelist|Invalid data found"):
         project.render()
     assert project.status()["failed_stage"] == "opening:scene"
     assert project.metadata()["last_successful_export"] is None
+    assert not list(project.directory.glob("artifacts/*/*.mp4"))
